@@ -1,0 +1,7 @@
+{
+	"name": "slipnslide",
+	"jspm": {
+		"format": "es6",
+  		"registry": "jspm"
+	}
+}
