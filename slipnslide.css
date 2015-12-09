@@ -1,0 +1,44 @@
+.slipnslide {
+	position: relative;
+
+	&__viewport {
+		overflow: hidden;	
+		margin: 0;
+	}
+
+	&__slides {
+		margin: 0;
+		overflow: hidden;
+		padding: 0;
+		transition: transform var(--timing);
+	}
+
+	&__control-button {
+		display: none;
+	}
+
+	&__indicator-wrapper {
+		@mixin list-bare;
+		@mixin list-horizontal;
+		margin-bottom: 1.625rem;
+		text-align: center;
+	}
+
+	&__indicator {
+		background-color: var(--color-blue-light);
+		border-radius: 50%;
+		cursor: pointer;
+		display: inline-block;
+		float: none;
+		height: 0.75rem;
+		margin: 0 0.375rem;
+		text-indent: -9999px;
+		transition: background-color var(--timing);
+		width: 0.75rem;
+
+		&.is-active {
+			background-color: var(--color-blue);
+		}
+	}
+
+}

@@ -1,5 +1,7 @@
 {
 	"name": "slipnslide",
+  	"version": "1.0.0",
+	"main": "slipnslide.js",
 	"jspm": {
 		"format": "es6",
   		"registry": "jspm"
