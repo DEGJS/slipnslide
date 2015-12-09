@@ -9,18 +9,18 @@ let slipnslideInst = slipnslide(element, slipnslideOptions);
 ## Settings
 ``` javascript
 let slipnslideOptions = {
-	itemSelector: 'li',
-	containerClass: 'slipnslide',
-	viewportClass: 'slipnslide-viewport',
-	controlButtonClass: ['slipnslide-controlButton'],
-	prevButtonClass: ['slipnslide-prevButton'],
-	nextButtonClass: ['slipnslide-nextButton'],
-	slidesClass: 'slipnslide-slides',
-	slideClass: 'slipnslide-slide',
-	showIndicators: true,
-	indicatorWrapperClass: 'slipnslide-indicator-wrapper',
-	indicatorItemClass: 'slipnslide-indicator',
-	indiciatorActiveClass: 'is-active'
+    itemSelector: 'li',
+    containerClass: 'slipnslide',
+    viewportClass: 'slipnslide__viewport',
+    controlButtonClass: ['slipnslide__control-button'],
+    prevButtonClass: ['slipnslide__prev-button'],
+    nextButtonClass: ['slipnslide__next-button'],
+    slidesClass: 'slipnslide__slides',
+    slideClass: 'slipnslide__slide',
+    showIndicators: true,
+    indicatorWrapperClass: 'slipnslide__indicator-wrapper',
+    indicatorItemClass: 'slipnslide__indicator',
+    indiciatorActiveClass: 'is-active'
 }
 ```
 
