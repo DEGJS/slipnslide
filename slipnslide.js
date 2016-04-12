@@ -51,9 +51,9 @@ let slipnslide = function(element, options) {
 	}
 
 	function createContainerEl() {
-		containerEl = createElement('div', settings.containerClass);	
+		containerEl = createElement('div', settings.containerClass);
 
-		wrapElement(element, containerEl);	
+		wrapElement(element, containerEl);
 	}
 
 	function createViewportEl() {
@@ -75,10 +75,10 @@ let slipnslide = function(element, options) {
 		nextButtonEl.addEventListener('click', onNextButtonElClick);
 	}
 
-	function prepareSlides() {	
+	function prepareSlides() {
 
 		element.classList.add(settings.slidesClass);
-		
+
 		slideEls = Array.prototype.slice.call(element.querySelectorAll(settings.itemSelector), 0);
 
 		slideEls.forEach(function(item) {
@@ -123,7 +123,7 @@ let slipnslide = function(element, options) {
     }
 
 	function measure() {
-		if(slideEls.length > 0) {				
+		if(slideEls.length > 0) {
 			slideElWidth = getElementOuterWidth(slideEls[0]);
 
 			if (element.classList.contains(settings.slidesClass)) {
@@ -145,10 +145,10 @@ let slipnslide = function(element, options) {
 
 	function moveToNextSlide() {
 		move(1);
-	} 
+	}
 
 	function move(increment) {
-		
+
 		var destinationIndex = currentIndex + increment;
 
 		if(destinationIndex < 0)
@@ -160,7 +160,7 @@ let slipnslide = function(element, options) {
 
 
 		var position = -1 * (currentIndex * slideElWidth);
-		
+
 		positionSlides(position);
 
 		updateControlButtons();
@@ -219,7 +219,7 @@ let slipnslide = function(element, options) {
 	function isAtEndOfSlides() {
 		return currentIndex == maxIndex;
 	}
-	
+
 	function onPrevButtonElClick(e) {
 		e.preventDefault();
 
@@ -231,7 +231,7 @@ let slipnslide = function(element, options) {
 
 		move(1);
 	}
-	
+
 	function onWindowResize() {
 		measure();
 		updateControlButtons();
@@ -251,11 +251,14 @@ let slipnslide = function(element, options) {
 
 		prevButtonEl.parentNode.removeChild(prevButtonEl);
 		nextButtonEl.parentNode.removeChild(nextButtonEl);
-		indicatorWrapperEl.parentNode.removeChild(indicatorWrapperEl);
+
+		if (settings.showIndicators) {
+			indicatorWrapperEl.parentNode.removeChild(indicatorWrapperEl);
+		}
 
 		element.classList.remove(settings.slidesClass);
 		element.style.width = '100%';
-		
+
 		slideEls.forEach(function(item) {
 			item.classList.remove(settings.slideClass);
 		});
@@ -344,7 +347,7 @@ let swiper = function(containerEl) {
                 touchCancel(event); // reset the variables
             } else {
                 touchCancel(event);
-            }   
+            }
         } else {
             touchCancel(event);
         }
@@ -368,7 +371,7 @@ let swiper = function(containerEl) {
         if ( swipeAngle < 0 ) { swipeAngle =  360 - Math.abs(swipeAngle); }
         return swipeAngle;
     }
-    
+
     function determineSwipeDirection() {
         var swipeAngle = caluculateAngle();
 
@@ -413,14 +416,14 @@ var createElement = function(tag, classNames) {
 	if(Array.isArray(classNames) == false)
 		classNames = [classNames];
 	classNames.forEach(function(className) {
-		el.classList.add(className);	
+		el.classList.add(className);
 	});
 
 	return el;
-	
+
 };
 
-var wrapElement = function(elToWrap, wrapperEl) {    	
+var wrapElement = function(elToWrap, wrapperEl) {
 	elToWrap.parentNode.insertBefore(wrapperEl, elToWrap);
 	wrapperEl.appendChild(elToWrap);
 };
