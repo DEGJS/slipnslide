@@ -20,9 +20,12 @@ let slipnslideOptions = {
     showIndicators: true,
     indicatorWrapperClass: 'slipnslide__indicator-wrapper',
     indicatorItemClass: 'slipnslide__indicator',
-    indiciatorActiveClass: 'is-active'
+    indiciatorActiveClass: 'is-active',
+    currentIndex: '0'
 }
 ```
 
 ## Revision History
 * **1.0.0:** First commit.
+* **1.0.1:** Fixed showIndicator bug on destroy.
+* **1.1.1:** Added option to set starting slide with currentIndex.

@@ -1,3 +1,4 @@
+/* */
 let slipnslide = function(element, options) {
 	var settings,
 		containerEl,
@@ -27,7 +28,8 @@ let slipnslide = function(element, options) {
 			showIndicators: true,
 			indicatorWrapperClass: 'slipnslide__indicator-wrapper',
 			indicatorItemClass: 'slipnslide__indicator',
-			indiciatorActiveClass: 'is-active'
+			indiciatorActiveClass: 'is-active',
+			currentIndex: '0'
 		};
 
 	function init() {
@@ -91,7 +93,7 @@ let slipnslide = function(element, options) {
 			indicatorWrapperEl = createElement('ul', settings.indicatorWrapperClass);
 			slideEls.forEach(function(slide, index) {
 				let el = createElement('li', settings.indicatorItemClass);
-				if (index === currentIndex) {
+				if (index === settings.currentIndex) {
 					el.classList.add(settings.indiciatorActiveClass);
 				}
 				el.innerHTML = index;
@@ -109,8 +111,8 @@ let slipnslide = function(element, options) {
 
 	function onIndicatorClick(e) {
 		let clickedIndex = parseInt(e.currentTarget.textContent);
-		if (clickedIndex !== currentIndex) {
-			move(clickedIndex - currentIndex);
+		if (clickedIndex !== settings.currentIndex) {
+			move(clickedIndex - settings.currentIndex);
 		}
 	};
 
@@ -149,17 +151,17 @@ let slipnslide = function(element, options) {
 
 	function move(increment) {
 
-		var destinationIndex = currentIndex + increment;
+		var destinationIndex = settings.currentIndex + increment;
 
 		if(destinationIndex < 0)
-			currentIndex = 0;
+			settings.currentIndex = 0;
 		else if(destinationIndex >= maxIndex)
-			currentIndex = maxIndex;
+			settings.currentIndex = maxIndex;
 		else
-			currentIndex += increment;
+			settings.currentIndex += increment;
 
 
-		var position = -1 * (currentIndex * slideElWidth);
+		var position = -1 * (settings.currentIndex * slideElWidth);
 
 		positionSlides(position);
 
@@ -175,12 +177,12 @@ let slipnslide = function(element, options) {
 	}
 
 	function repositionSlides() {
-		if(currentIndex != 0) {
+		if(settings.currentIndex != 0) {
 
-			if(currentIndex > maxIndex)
-				currentIndex = maxIndex;
+			if(settings.currentIndex > maxIndex)
+				settings.currentIndex = maxIndex;
 
-			var position = -1 * currentIndex * slideElWidth;
+			var position = -1 * settings.currentIndex * slideElWidth;
 			positionSlides(position);
 		}
 	}
@@ -194,7 +196,7 @@ let slipnslide = function(element, options) {
 		if ((settings.showIndicators) && (slideEls.length > 1)) {
 			let indicatorItems = Array.prototype.slice.call(indicatorWrapperEl.querySelectorAll('.' + settings.indicatorItemClass));
 			indicatorItems.forEach(function(el, index) {
-				if (index === currentIndex) {
+				if (index === settings.currentIndex) {
 					if (!el.classList.contains(settings.indiciatorActiveClass)) {
 						el.classList.add(settings.indiciatorActiveClass);
 					}
@@ -213,11 +215,11 @@ let slipnslide = function(element, options) {
 	}
 
 	function isAtStartOfSlides() {
-		return currentIndex == 0;
+		return settings.currentIndex == 0;
 	}
 
 	function isAtEndOfSlides() {
-		return currentIndex == maxIndex;
+		return settings.currentIndex == maxIndex;
 	}
 
 	function onPrevButtonElClick(e) {
