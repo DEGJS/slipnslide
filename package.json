@@ -32,7 +32,7 @@
             "lib": "src"
         },
         "dependencies": {
-        	"domUtils": "github:DEGJS/domUtils@1.0.1"
+        	"domUtils": "github:DEGJS/domUtils@1.0.2"
         }
     }
 }
