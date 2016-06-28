@@ -30,6 +30,9 @@
         "main": "slipnslide.js",
         "directories": {
             "lib": "src"
+        },
+        "dependencies": {
+        	"domUtils": "github:DEGJS/domUtils@1.0.1"
         }
     }
 }
