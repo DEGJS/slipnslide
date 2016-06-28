@@ -1,8 +1,35 @@
 {
-	"name": "slipnslide",
-  	"version": "1.1.1",
-	"jspm": {
-		"format": "es6",
-  		"registry": "jspm"
-	}
+    "name": "slipnslide",
+    "version": "2.0.0",
+    "description": "Don't use a carousel. If you have to, this one's not awful.",
+    "keywords": [
+		"carousel",
+		"gallery",
+		"slipnslide"
+    ],
+    "author": {
+        "name": "Ryan Heap",
+        "email": "heaper@degdigital.com"
+    },
+    "contributors": [
+        {
+            "name": "Aaron Ladage",
+            "email": "aladage@degdigital.com",
+            "url": "http://aaronladage.com"
+        }
+    ],
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DEGJS/slipnslide.git"
+    },
+    "bugs": "https://github.com/DEGJS/slipnslide/issues",
+    "jspm": {
+        "registry": "jspm",
+        "format": "es6",
+        "main": "slipnslide.js",
+        "directories": {
+            "lib": "src"
+        }
+    }
 }

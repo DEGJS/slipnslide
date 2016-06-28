@@ -1,9 +1,9 @@
 import domUtils from "DEGJS/domUtils";
-import indicators from "./indicators";
-import navButtons from "./navButtons";
-import swiper from "./swiper";
-import { supportsCSSProp } from "./featureDetection";
-import { debounce } from "./utils";
+import indicators from "indicators";
+import navButtons from "navButtons";
+import swiper from "swiper";
+import { supportsCSSProp } from "featureDetection";
+import { debounce } from "utils";
 
 let slipnslide = function(element, options) {
 
