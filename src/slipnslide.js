@@ -28,8 +28,8 @@ let slipnslide = function(element, options) {
 			showIndicators: true,
 			indicatorWrapperClass: 'slipnslide__indicator-wrapper',
 			indicatorItemClass: 'slipnslide__indicator',
-			indiciatorActiveClass: 'is-active',
-			currentIndex: '0'
+			indicatorActiveClass: 'is-active',
+			currentIndex: 0
 		};
 
 	function init() {
@@ -94,7 +94,7 @@ let slipnslide = function(element, options) {
 			slideEls.forEach(function(slide, index) {
 				let el = createElement('li', settings.indicatorItemClass);
 				if (index === settings.currentIndex) {
-					el.classList.add(settings.indiciatorActiveClass);
+					el.classList.add(settings.indicatorActiveClass);
 				}
 				el.innerHTML = index;
 				indicatorWrapperEl.appendChild(el);
@@ -197,11 +197,11 @@ let slipnslide = function(element, options) {
 			let indicatorItems = Array.prototype.slice.call(indicatorWrapperEl.querySelectorAll('.' + settings.indicatorItemClass));
 			indicatorItems.forEach(function(el, index) {
 				if (index === settings.currentIndex) {
-					if (!el.classList.contains(settings.indiciatorActiveClass)) {
-						el.classList.add(settings.indiciatorActiveClass);
+					if (!el.classList.contains(settings.indicatorActiveClass)) {
+						el.classList.add(settings.indicatorActiveClass);
 					}
 				} else {
-					el.classList.remove(settings.indiciatorActiveClass);
+					el.classList.remove(settings.indicatorActiveClass);
 				}
 			});
 		}
