@@ -9,7 +9,9 @@ let slipnslide = function(element, options) {
 		slideElWidth,
 		slideContainerElWidth,
 		indicatorWrapperEl,
+		indicatorInnerWrapperEl,
 		indicatorItems,
+		indicatorElWidth,
 		currentIndex = 0,
 		visibleSlideCount = 0,
 		maxIndex = 0,
@@ -28,6 +30,7 @@ let slipnslide = function(element, options) {
 			showIndicators: true,
 			photoIndicators: false,
 			indicatorWrapperClass: 'slipnslide__indicator-wrapper',
+			indicatorInnerWrapperClass: 'slipnslide__indicator-inner-wrapper',
 			indicatorItemClass: 'slipnslide__indicator',
 			indicatorActiveClass: 'is-active',
 			currentIndex: 0
@@ -91,23 +94,25 @@ let slipnslide = function(element, options) {
 
 	function createIndicators() {
 		if ((settings.showIndicators) && (slideEls.length > 1)) {
-			indicatorWrapperEl = createElement('ul', settings.indicatorWrapperClass);
+			indicatorWrapperEl = createElement('div', settings.indicatorWrapperClass);
+			indicatorInnerWrapperEl = createElement('ul', settings.indicatorInnerWrapperClass);
 			slideEls.forEach(function(slide, index) {
 				let el = createElement('li', settings.indicatorItemClass);
 				if (index === settings.currentIndex) {
 					el.classList.add(settings.indicatorActiveClass);
 				}
-				if ((settings.photoIndicators)) {
+				if (settings.photoIndicators) {
 					let photoIndicator = `<img src="${slide.dataset.indicator}">`;
 					el.innerHTML = photoIndicator;
 				} else {
 					el.innerHTML = index;
 				}
 				el.dataset.index = index;
-				indicatorWrapperEl.appendChild(el);
+				indicatorInnerWrapperEl.appendChild(el);
 			});
 
 			containerEl.appendChild(indicatorWrapperEl);
+			indicatorWrapperEl.appendChild(indicatorInnerWrapperEl);
 			indicatorWrapperEl = containerEl.querySelector('.' + settings.indicatorWrapperClass);
 
 			indicatorItems = Array.prototype.slice.call(document.querySelectorAll('.' + settings.indicatorItemClass));
@@ -147,6 +152,9 @@ let slipnslide = function(element, options) {
 			repositionSlides();
 
 		}
+		if (settings.photoIndicators) {
+			indicatorElWidth = getElementOuterWidth(indicatorItems[0]);
+		}
 	}
 
 	function moveToPreviousSlide() {
@@ -173,6 +181,17 @@ let slipnslide = function(element, options) {
 
 		positionSlides(position);
 
+		if (settings.photoIndicators) {
+			var	indicatorPosition = (-1 * (settings.currentIndex * indicatorElWidth)) + (indicatorElWidth * .5);
+			var endOfIndicators = slideElWidth / indicatorElWidth;
+
+			if (destinationIndex == 0) { indicatorPosition = 0; }
+			else if (destinationIndex >= slideEls.length -endOfIndicators) {
+				indicatorPosition = (-1 * (slideEls.length * indicatorElWidth) + (endOfIndicators * indicatorElWidth));
+			}
+			positionIndicators(indicatorPosition);
+		}
+
 		updateControlButtons();
 		updateIndicators();
 	}
@@ -182,6 +201,13 @@ let slipnslide = function(element, options) {
 			setCSSTransform(element, "translate3d(" + position + "px, 0px, 0px)");
 		else
 			element.style.marginLeft = position + "px";
+	}
+
+	function positionIndicators(indicatorPosition) {
+		if(useCSSTransforms)
+			setCSSTransform(indicatorInnerWrapperEl, "translate3d(" + indicatorPosition + "px, 0px, 0px)");
+		else
+			indicatorWrapperEl.style.marginLeft = position + "px";
 	}
 
 	function repositionSlides() {

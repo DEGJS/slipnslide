@@ -20,9 +20,10 @@ let slipnslideOptions = {
     showIndicators: true,
     photoIndicators: false,
     indicatorWrapperClass: 'slipnslide__indicator-wrapper',
+    indicatorInnerWrapperClass: 'slipnslide__indicator-inner-wrapper',
     indicatorItemClass: 'slipnslide__indicator',
-    indiciatorActiveClass: 'is-active',
-    currentIndex: '0'
+    indicatorActiveClass: 'is-active',
+    currentIndex: 0
 }
 ```
 
