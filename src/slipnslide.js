@@ -26,6 +26,7 @@ let slipnslide = function(element, options) {
 			slidesClass: 'slipnslide__slides',
 			slideClass: 'slipnslide__slide',
 			showIndicators: true,
+			photoIndicators: false,
 			indicatorWrapperClass: 'slipnslide__indicator-wrapper',
 			indicatorItemClass: 'slipnslide__indicator',
 			indicatorActiveClass: 'is-active',
@@ -96,9 +97,16 @@ let slipnslide = function(element, options) {
 				if (index === settings.currentIndex) {
 					el.classList.add(settings.indicatorActiveClass);
 				}
-				el.innerHTML = index;
+				if ((settings.photoIndicators)) {
+					let photoIndicator = `<img src="${slide.dataset.indicator}">`;
+					el.innerHTML = photoIndicator;
+				} else {
+					el.innerHTML = index;
+				}
+				el.dataset.index = index;
 				indicatorWrapperEl.appendChild(el);
 			});
+
 			containerEl.appendChild(indicatorWrapperEl);
 			indicatorWrapperEl = containerEl.querySelector('.' + settings.indicatorWrapperClass);
 
@@ -110,11 +118,11 @@ let slipnslide = function(element, options) {
 	}
 
 	function onIndicatorClick(e) {
-		let clickedIndex = parseInt(e.currentTarget.textContent);
+		let clickedIndex = parseInt(e.currentTarget.dataset.index);
 		if (clickedIndex !== settings.currentIndex) {
 			move(clickedIndex - settings.currentIndex);
 		}
-	};
+	}
 
 	function enableTouchEvents() {
 
