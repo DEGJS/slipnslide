@@ -30,5 +30,6 @@ let slipnslideOptions = {
 * **1.0.0:** First commit.
 * **1.0.1:** Fixed showIndicator bug on destroy.
 * **1.1.1:** Added option to set starting slide with currentIndex.
+* **1.1.2:** Updated demo CSS.
 * **1.1.3:** Fixed bug with currentIndex.
-* **1.2.3:** Added option to photo indicators.
+* **1.2.3:** Added option to set photo indicators.
