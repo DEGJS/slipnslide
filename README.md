@@ -1,6 +1,8 @@
 # Slipnslide
 Don't use a carousel. If you have to, this one's not awful.
 
+**THIS REPOSITORY IS NO LONGER MAINTAINED**
+
 ## Sample Usage
 ``` javascript
 let slipnslideInst = slipnslide(element, slipnslideOptions);
